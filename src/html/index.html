@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="h-full">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/styles.css" rel="stylesheet">
+    </head>
+    <body class="h-full text-center flex items-center justify-center">
+        <div class="max-w-md w-full p-8">
+            <h1 class="text-5xl font-semibold mb-8">
+                Lnk
+            </h1>
+
+            <form action="/" method="post" class="w-full">
+                <div class="relative flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute inset-y-0 left-0 my-2 ml-3 w-5 text-gray-400"><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" x2="16" y1="12" y2="12"></line></svg>
+
+                    <input type="text" id="uri" name="uri" placeholder="Shorten your link" class="peer block w-full rounded-md border border-gray-200 bg-white p-2 pl-10 pr-12 text-sm shadow-lg focus:border-black outline-none ring-0 transition-all">
+
+                    <button type="submit" class="hover:border-gray-700 hover:text-gray-700 peer-focus:border-gray-700 peer-focus:text-gray-700 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-sm font-medium text-gray-400 transition-all">
+                        <p>↵</p>
+                    </button>
+                </div>
+
+                <div class="relative flex items-center">
+                    <input type="text" id="slug" name="slug" placeholder="YourCoolSlug" class="hidden w-full rounded-b-md border border-gray-200 bg-white p-2 mx-8 text-sm shadow-lg focus:border-b-blue-400 focus:border-x-blue-400 outline-none ring-0 text-center transition-all" />
+                </div>
+
+                <div id="tokenContainer" class="absolute bottom-8 left-0 w-full">
+                    <input type="password" autocomplete="off" id="token" name="token" placeholder="⚠ API key required" class="focus:outline-none text-center"><br>
+                </div>
+            </form>
+
+            <button class="text-sm text-gray-300 mt-6 hover:text-blue-400 transition-all" id="customSlugButton">Use custom slug</button>
+        </div>
+
+        <script>
+            const tokenContainer = document.getElementById('tokenContainer');
+            const tokenInput = document.getElementById('token');
+
+            const slugButton = document.getElementById('customSlugButton');
+            const slugInput = document.getElementById('slug');
+
+            const apiKey = localStorage.getItem('apiKey');
+
+            if (apiKey) {
+                tokenInput.value = apiKey;
+                tokenContainer.style.display = 'none';
+            }
+
+            tokenInput.onchange = () => {
+                localStorage.setItem('apiKey', tokenInput.value);
+            };
+
+            slugButton.onclick = () => {
+                slugButton.remove();
+                slug.style.display = 'block';
+                slug.focus();
+            };
+        </script>
+
+        <style>
+            #token::placeholder {
+                text-align: center;
+                color: orangered;
+            }
+        </style>
+    </body>
+</html>
