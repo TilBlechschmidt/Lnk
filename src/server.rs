@@ -174,7 +174,9 @@ fn generate_slug(len: usize) -> String {
 }
 
 fn generate_info(slug: String, uri: Uri, state: &AppState) -> String {
-    let qr = QRBuilder::new(uri.to_string())
+    let short = format!("{}/{slug}", state.domain);
+
+    let qr = QRBuilder::new(format!("https://{}", short.clone()))
         .ecl(ECL::M)
         .build()
         .expect("failed to build QR code");
@@ -186,6 +188,6 @@ fn generate_info(slug: String, uri: Uri, state: &AppState) -> String {
 
     include_str!("./html/info.html")
         .replace("{{DOMAIN}}", &state.domain)
-        .replace("{{LINK}}", &format!("{}/{slug}", state.domain))
+        .replace("{{LINK}}", &short)
         .replace("{{SVG}}", &svg)
 }
