@@ -16,7 +16,7 @@ use sled::Db;
 use std::{iter::repeat_with, path::PathBuf, sync::Arc};
 
 // Alphanumerics excluding ambiguous ones like 0/O or 1/I/l
-const CHARSET: &[u8] = b"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz0123456789";
+const CHARSET: &[u8] = b"ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
 const WHITELIST: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 const HTML_ROOT: &str = include_str!("./html/index.html");
